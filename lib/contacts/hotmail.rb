@@ -85,11 +85,11 @@ class Contacts
             
             # Same contact, or different?
             build_contacts << [] if memo != c_info[2]
-            
+
             # Grab info
             case c_info[1]
               when "e" # Email
-                build_contacts.last[1] = row.match(/#{email_match_text_beginning}(.*)#{email_match_text_end}/)[1]
+                build_contacts.last[1] = row.match(/#{email_match_text_beginning}(.*?)#{email_match_text_end}/)[1]
               when "dn" # Name
                 build_contacts.last[0] = row.match(/<a[^>]*>(.+)<\/a>/)[1]
             end
@@ -103,9 +103,12 @@ class Contacts
         end
         
         build_contacts.each do |contact|
+          # Only return contacts with email addresses
           unless contact[1].nil?
-            # Only return contacts with email addresses
-            contact[1] = CGI::unescape(contact[1])
+            # somehow, email addresses on hotmail contacts list are escaped twice, making
+            # an @ a %2540. after the first escape this will become %40, after the second
+            # it will become @
+            contact[1] = CGI::unescape(CGI::unescape(contact[1]))
             @contacts << contact
           end
         end
