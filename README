@@ -1,6 +1,7 @@
 == Welcome to Contacts
 
 Contacts is a universal interface to grab contact list information from various providers including Hotmail, AOL, Gmail, Plaxo and Yahoo.
+Since the original contacts from cardmagic at http://github.com/cardmagic/contacts does not seem to maintained anymore, I've created this fork.
 
 == Download
 
@@ -52,6 +53,7 @@ See the examples/ directory.
 * Leonardo Wong (mailto:mac@boy.name)
 * Rusty Burchfield
 * justintv
+* Rob Scheepmaker
 
 This library is released under the terms of the BSD.
 
